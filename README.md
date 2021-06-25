@@ -1,2 +1,1 @@
-# datasci_project_slides
-Reveal.js slides
+# Reveal.js slides for *datasci_project*
