@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Jieun K">
+  <meta name="dcterms.date" content="2021-06-25">
+  <title>A slide deck</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./revealjs/dist/reset.css">
+  <link rel="stylesheet" href="./revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="./revealjs/dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">A slide deck</h1>
+  <p class="author">Jieun K</p>
+  <p class="date">June 25, 2021</p>
+</section>
+
+<section>
+<section id="eda-regression-modeling-and-more-with-seoul-officetel-rentals-data-2011-2021" class="title-slide slide level1">
+<h1>EDA, Regression Modeling and More with Seoul Officetel Rentals Data (2011-2021)</h1>
+
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+</section>
+<section id="preprocessing" class="slide level2">
+<h2>Preprocessing</h2>
+<h3 id="set-hangeul-font-한글-폰트-설정">Set Hangeul Font, 한글 폰트 설정</h3>
+<ul>
+<li><p>For plotting purposes</p></li>
+<li><p>matplotlib.<code>rc("font",family=font_name)</code></p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> fm </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Nanum Gothic Coding</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># font_path= r&quot;C:\tmp\NanumGothicCoding-Bold.ttf&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># D2Coding</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>font_path<span class="op">=</span> <span class="vs">r&quot;C:\tmp\D2CodingBold-Ver1.3.2-20180524.ttf&quot;</span>.replace(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>,<span class="st">&quot;/&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>font_name<span class="op">=</span> fm.FontProperties(fname<span class="op">=</span>font_path).get_name() <span class="co"># D2Coding</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mpl.rc(<span class="st">&quot;font&quot;</span>,family<span class="op">=</span>font_name)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>path<span class="op">=</span> <span class="st">&quot;./data/&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#csv_2021= &quot;seoul_rental_2021.csv&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>csv_2020<span class="op">=</span> <span class="st">&quot;seoul_rental_2020.csv&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>csv_2019<span class="op">=</span> <span class="st">&quot;seoul_rental_2019.csv&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>csv_2018<span class="op">=</span> <span class="st">&quot;seoul_rental_2018.csv&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>csv_2017<span class="op">=</span> <span class="st">&quot;seoul_rental_2017.csv&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>csv_2016<span class="op">=</span> <span class="st">&quot;seoul_rental_2016.txt&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>csv_2015<span class="op">=</span> <span class="st">&quot;seoul_rental_2015.txt&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>csv_2014<span class="op">=</span> <span class="st">&quot;seoul_rental_2014.txt&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>csv_2014_clean<span class="op">=</span> <span class="st">&quot;seoul_rental_2014_clean.txt&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>csv_2013<span class="op">=</span> <span class="st">&quot;seoul_rental_2013.txt&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>csv_2012<span class="op">=</span> <span class="st">&quot;seoul_rental_2012.txt&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>csv_2011<span class="op">=</span> <span class="st">&quot;seoul_rental_2011.txt&quot;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># df_2021= pd.read_csv(path+csv_2021,encoding=&quot;cp949&quot;)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># df_2021.shape</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>df_2020<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2020,encoding<span class="op">=</span><span class="st">&quot;cp949&quot;</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>df_2019<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2019,encoding<span class="op">=</span><span class="st">&quot;cp949&quot;</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>df_2018<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2018,encoding<span class="op">=</span><span class="st">&quot;cp949&quot;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>df_2017<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2017,encoding<span class="op">=</span><span class="st">&quot;cp949&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>df_2016<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2016,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>df_2015<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2015,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>df_2014<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2014,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>df_2013<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2013,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>df_2012<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2012,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>df_2011<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2011,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span></code></pre></div>
+<h3 id="merge-10-year-records-into-one-dataframe">Merge 10-year records into one dataframe</h3>
+<ul>
+<li>Check the shape of all the dataframes</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_list<span class="op">=</span> [df_2020,df_2019,df_2018,df_2017,df_2016,df_2015,df_2014,df_2013,df_2012,df_2011]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,df <span class="kw">in</span> <span class="bu">enumerate</span>(df_list):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    year<span class="op">=</span><span class="dv">2020</span><span class="op">-</span>i</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(year,<span class="st">&quot;:&quot;</span>,df.shape)</span></code></pre></div>
+<pre><code>2020 : (49971, 14)
+2019 : (48289, 14)
+2018 : (40030, 14)
+2017 : (34674, 14)
+2016 : (27592, 14)
+2015 : (24205, 14)
+2014 : (20820, 16)
+2013 : (16209, 14)
+2012 : (12529, 14)
+2011 : (10466, 14)</code></pre>
+<ul>
+<li>The two unnamed columns are from the year 2014.</li>
+<li>tabulation of 1909 rows incorrect; has to be manually adjusted</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_2014.isna().<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>시군구                0
+번지                16
+본번                 0
+부번                 0
+단지명             1909
+전월세구분              0
+전용면적(㎡)         1909
+계약년월               0
+계약일                0
+보증금(만원)            0
+월세(만원)             0
+층                  0
+건축년도               1
+도로명                0
+Unnamed: 14    18911
+Unnamed: 15    18911
+dtype: int64</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_2014_clean<span class="op">=</span> pd.read_csv(path<span class="op">+</span>csv_2014_clean,encoding<span class="op">=</span><span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_2014_clean.shape</span></code></pre></div>
+<pre><code>(20820, 14)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_list<span class="op">=</span> [df_2020,df_2019,df_2018,df_2017,df_2016,df_2015,df_2014_clean,df_2013,df_2012,df_2011]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_backup<span class="op">=</span> pd.concat(df_list,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> df_backup.copy()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 284785 entries, 0 to 284784
+Data columns (total 14 columns):
+ #   Column   Non-Null Count   Dtype  
+---  ------   --------------   -----  
+ 0   시군구      284785 non-null  object 
+ 1   번지       283949 non-null  object 
+ 2   본번       284785 non-null  int64  
+ 3   부번       284785 non-null  int64  
+ 4   단지명      284785 non-null  object 
+ 5   전월세구분    284785 non-null  object 
+ 6   전용면적(㎡)  284785 non-null  float64
+ 7   계약년월     284785 non-null  int64  
+ 8   계약일      284785 non-null  int64  
+ 9   보증금(만원)  284785 non-null  object 
+ 10  월세(만원)   284785 non-null  int64  
+ 11  층        284785 non-null  int64  
+ 12  건축년도     276309 non-null  float64
+ 13  도로명      284770 non-null  object 
+dtypes: float64(2), int64(6), object(6)
+memory usage: 30.4+ MB</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+시군구
+</th>
+<th>
+번지
+</th>
+<th>
+본번
+</th>
+<th>
+부번
+</th>
+<th>
+단지명
+</th>
+<th>
+전월세구분
+</th>
+<th>
+전용면적(㎡)
+</th>
+<th>
+계약년월
+</th>
+<th>
+계약일
+</th>
+<th>
+보증금(만원)
+</th>
+<th>
+월세(만원)
+</th>
+<th>
+층
+</th>
+<th>
+건축년도
+</th>
+<th>
+도로명
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+1237-3
+</td>
+<td>
+1237
+</td>
+<td>
+3
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+<td>
+논현로20길 12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="columns-to-be-mergeddropped">Columns to be merged/dropped</h3>
+<ul>
+<li>번지 (lot number)</li>
+<li>본번 (primary lot number)</li>
+<li>부번 (secondary lot number)</li>
+<li>단지명 (building/estate name)</li>
+<li>도로명 (street address)</li>
+</ul>
+<p>The street address is the only address that is legally valid in South Korea since the Road Name Address Act came fully into effect on January 1, 2014. The estate name has additional information and will be merged with the street name. The empty cells of the street address column will be filled the lot number and/or the estate name. The lot number is made up of a primary number hyphenated with a secondary number, e.g., 1237-3.</p>
+<p>🇰🇷 &gt; 도로명주소법이 전면적으로 시행되면서 2014년 1월 1일부터는 토지대장을 제외한 모든 곳에 도로명주소만을 쓸 수 있다. 따라서 도로명 주소와 단지명을 합쳐 각 건물의 전체 주소를 표시하되 도로명 주소 또는 단지명 컬럼이 비어 있으면 번지를 사용한다.</p>
+<h3 id="rename-data-columns">Rename data columns</h3>
+<ul>
+<li>시군구 → district1</li>
+<li>번지 → lot_num</li>
+<li>본번 → lot_num_primary</li>
+<li>부번 → lot_num_secondary</li>
+<li>단지명 → estate_name</li>
+<li>전월세구분 → rent_type (lump-sum or monthly)</li>
+<li>전용면적(㎡) → unit_size (m²)</li>
+<li>계약년월 → sign_yrmon</li>
+<li>계약일 → sign_day</li>
+<li>보증금(만원) → deposit (in 10,000 won)</li>
+<li>월세(만원) → rent_price (in 10,000 won)</li>
+<li>층 → floor</li>
+<li>건축년도 → yr_built</li>
+<li>도로명 → str_addr</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cols<span class="op">=</span> [<span class="st">&quot;district1&quot;</span>,<span class="st">&quot;lot_num&quot;</span>,<span class="st">&quot;lot_num_primary&quot;</span>,<span class="st">&quot;lot_num_secondary&quot;</span>,<span class="st">&quot;estate_name&quot;</span>,<span class="st">&quot;rent_type&quot;</span>,<span class="st">&quot;unit_size&quot;</span>,<span class="st">&quot;sign_yymm&quot;</span>,<span class="st">&quot;sign_dd&quot;</span>,<span class="st">&quot;deposit&quot;</span>,<span class="st">&quot;rent_price&quot;</span>,<span class="st">&quot;floor&quot;</span>,<span class="st">&quot;yr_built&quot;</span>,<span class="st">&quot;str_addr&quot;</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df.columns<span class="op">=</span> cols</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district1
+</th>
+<th>
+lot_num
+</th>
+<th>
+lot_num_primary
+</th>
+<th>
+lot_num_secondary
+</th>
+<th>
+estate_name
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yymm
+</th>
+<th>
+sign_dd
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+<th>
+str_addr
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+1237-3
+</td>
+<td>
+1237
+</td>
+<td>
+3
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+<td>
+논현로20길 12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>district1               0
+lot_num               836
+lot_num_primary         0
+lot_num_secondary       0
+estate_name             0
+rent_type               0
+unit_size               0
+sign_yymm               0
+sign_dd                 0
+deposit                 0
+rent_price              0
+floor                   0
+yr_built             8476
+str_addr               15
+dtype: int64</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nan_index<span class="op">=</span> np.where(df.str_addr.isna())</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>nan_index</span></code></pre></div>
+<pre><code>(array([238349, 238350, 238351, 238352, 238353, 238354, 238355, 238356,
+        238357, 238358, 238359, 238360, 238361, 238362, 238363],
+       dtype=int64),)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nan_index[<span class="dv">0</span>]<span class="co">#.flatten()</span></span></code></pre></div>
+<pre><code>array([238349, 238350, 238351, 238352, 238353, 238354, 238355, 238356,
+       238357, 238358, 238359, 238360, 238361, 238362, 238363],
+      dtype=int64)</code></pre>
+<h3 id="merge-str_addr-and-estate_name">Merge <code>str_addr</code> and <code>estate_name</code></h3>
+<ul>
+<li><p>into new column <code>street_addr</code>, and</p></li>
+<li><p>drop the two columns</p></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> df[<span class="st">&quot;street_addr&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;estate_name&quot;</span>]<span class="op">=</span> df[<span class="st">&quot;estate_name&quot;</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;str_addr&quot;</span>]<span class="op">=</span> df.str_addr.astype(<span class="bu">str</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>str_addr_series<span class="op">=</span> [row[<span class="st">&quot;str_addr&quot;</span>].replace(<span class="st">&quot;nan&quot;</span>,<span class="st">&quot;&quot;</span>)<span class="op">+</span>row[<span class="st">&quot;estate_name&quot;</span>] <span class="cf">if</span> row[<span class="st">&quot;str_addr&quot;</span>]<span class="op">==</span><span class="st">&quot;nan&quot;</span> <span class="cf">else</span> row[<span class="st">&quot;str_addr&quot;</span>]<span class="op">+</span><span class="st">&quot;, &quot;</span><span class="op">+</span>row[<span class="st">&quot;estate_name&quot;</span>] <span class="cf">for</span> i,row <span class="kw">in</span> df.iterrows()]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="dv">0</span>,<span class="st">&quot;street_addr&quot;</span>,str_addr_series)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#df[&quot;str_addr&quot;].replace(np.NaN,&quot;&quot;,regex=True) + &quot;, &quot;+ df[&quot;estate_name&quot;]</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#df</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>district1               0
+lot_num               836
+lot_num_primary         0
+lot_num_secondary       0
+estate_name             0
+rent_type               0
+unit_size               0
+sign_yymm               0
+sign_dd                 0
+deposit                 0
+rent_price              0
+floor                   0
+yr_built             8476
+str_addr                0
+street_addr             0
+dtype: int64</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df.iloc[nan_index[0]]</span></span></code></pre></div>
+<h3 id="drop-unused-columns">Drop unused columns</h3>
+<ul>
+<li>lot_num</li>
+<li>lot_num_primary</li>
+<li>lot_num_secondary</li>
+<li>estate_name</li>
+<li>str_addr</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">&quot;lot_num&quot;</span>,<span class="st">&quot;lot_num_primary&quot;</span>,<span class="st">&quot;lot_num_secondary&quot;</span>,<span class="st">&quot;estate_name&quot;</span>,<span class="st">&quot;str_addr&quot;</span>],axis<span class="op">=</span><span class="dv">1</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+street_addr
+</th>
+<th>
+district1
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yymm
+</th>
+<th>
+sign_dd
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+논현로20길 12, (1237-3)
+</td>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="new-column-district">New column <code>district</code></h3>
+<ul>
+<li>전체 데이터가 서울 지역에 한정되어 있으므로 “서울특별시”, 동 이름 제거</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="dv">0</span>,<span class="st">&quot;district&quot;</span>,[val.split()[<span class="dv">1</span>] <span class="cf">for</span> i,val <span class="kw">in</span> df.district1.iteritems() ])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+district1
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yymm
+</th>
+<th>
+sign_dd
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12, (1237-3)
+</td>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+</tr>
+<tr>
+<th>
+1
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12, (1237-3)
+</td>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+월세
+</td>
+<td>
+29.95
+</td>
+<td>
+202005
+</td>
+<td>
+30
+</td>
+<td>
+3000
+</td>
+<td>
+80
+</td>
+<td>
+4
+</td>
+<td>
+2020.0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="dv">2</span>,<span class="st">&quot;district_sub&quot;</span>,[<span class="ss">f&quot;</span><span class="sc">{</span>val<span class="sc">.</span>split()[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> i,val <span class="kw">in</span> df.district1.iteritems()])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+district_sub
+</th>
+<th>
+district1
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yymm
+</th>
+<th>
+sign_dd
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12, (1237-3)
+</td>
+<td>
+개포동
+</td>
+<td>
+서울특별시 강남구 개포동
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="drop-columns">Drop columns</h3>
+<ul>
+<li><code>district1</code></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop &quot;district1&quot; column</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">&quot;district1&quot;</span>,axis<span class="op">=</span><span class="dv">1</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+district_sub
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yymm
+</th>
+<th>
+sign_dd
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12, (1237-3)
+</td>
+<td>
+개포동
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020.0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="data-imputation-yr_built">Data imputation: <code>yr_built</code></h3>
+<ul>
+<li>🇰🇷 건축년도가 비어 있는 경우 0으로 채움</li>
+<li>🇺🇸 Impute empty cells of <code>yr_built</code> with zero.</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df.yr_built.isnull().<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>8456</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.yr_built.fillna(<span class="dv">0</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df.yr_built.isnull().<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>0</code></pre>
+<h3 id="change-yr_built-data-type">Change <code>yr_built</code> data type</h3>
+<ul>
+<li>From <em>float</em> to <em>int</em></li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.yr_built<span class="op">=</span> df.yr_built.astype(<span class="st">&quot;int&quot;</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+estate_name
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_yrmon
+</th>
+<th>
+sign_day
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12 (개포동)
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.yr_built.value_counts()[:<span class="dv">10</span>]</span></code></pre></div>
+<pre><code>2017    20905
+2018    16010
+2004    15272
+2016    14448
+2015    12541
+2019    12399
+2014    11959
+2013    11745
+2003    10551
+2005     8665
+Name: yr_built, dtype: int64</code></pre>
+<h3 id="create-new-column-sign_date">Create new column <code>sign_date</code></h3>
+<ul>
+<li>계약년월 (<em>year and month of contract</em>)</li>
+<li>계약일 (<em>day of contract</em>)</li>
+</ul>
+<p>🇰🇷 &gt; 계약년월(예: 202004)과 계약일(11)을 합쳐 sign_date (예: 2020-04-11) 생성</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df.columns</span></code></pre></div>
+<pre><code>Index([&#39;district&#39;, &#39;street_addr&#39;, &#39;estate_name&#39;, &#39;rent_type&#39;, &#39;unit_size&#39;,
+       &#39;sign_yrmon&#39;, &#39;sign_day&#39;, &#39;deposit&#39;, &#39;rent_price&#39;, &#39;floor&#39;, &#39;yr_built&#39;],
+      dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.sign_day.value_counts()[:<span class="dv">10</span>]</span></code></pre></div>
+<pre><code>20    6157
+11    6124
+9     6077
+14    6059
+18    6057
+21    6052
+10    6045
+28    5946
+13    5900
+8     5889
+Name: sign_day, dtype: int64</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> Normalizer</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>transformer<span class="op">=</span> Normalizer()</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>sign_day_counts<span class="op">=</span> df.sign_day.value_counts(sort<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>sign_day_scaled<span class="op">=</span> transformer.fit_transform([sign_day_counts])</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sign_day_scaled.shape)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>sign_day_scaled[<span class="dv">0</span>][:<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>(1, 31)
+
+
+
+
+
+array([0.17370481, 0.16065611, 0.17325596, 0.17864216, 0.16828655])</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(df.sign_day.value_counts()<span class="op">/</span>df.shape[<span class="dv">0</span>])[:<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>20    0.035597
+11    0.035406
+9     0.035134
+14    0.035030
+18    0.035019
+Name: sign_day, dtype: float64</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> Normalizer</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>transformer<span class="op">=</span> Normalizer()</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>sign_day_counts<span class="op">=</span> df.sign_day.value_counts(sort<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>sign_day_scaled<span class="op">=</span> transformer.fit_transform([sign_day_counts])</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.locator_params(axis=&#39;x&#39;, nbins=31)</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.locator_params(axis=&#39;y&#39;, nbins=8)</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>plt.plot(sign_day_counts.index,sign_day_scaled[<span class="dv">0</span>])</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span>sign_day_counts.index,labels<span class="op">=</span>sign_day_counts.index)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xlim(0,31)</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.ylim(0,1)</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Day of Contract&quot;</span>)</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Occurrence Normalized&quot;</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;$sign\_day$ frequency&quot;</span>)</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="dv">12</span>,<span class="fl">.16</span>,<span class="st">&quot;계약날짜 빈도&quot;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>plt.margins(<span class="fl">.05</span>)</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<figure>
+<img data-src="output_43_0.svg" alt="svg" /><figcaption aria-hidden="true">svg</figcaption>
+</figure>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sign_day_ratio<span class="op">=</span> df.sign_day.value_counts(sort<span class="op">=</span><span class="va">False</span>)<span class="op">/</span>df.shape[<span class="dv">0</span>]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.plot(sign_day_ratio.index,sign_day_ratio)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span>sign_day_ratio.index,labels<span class="op">=</span>sign_day_ratio.index)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xlim(0,31)</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.ylim(0,1)</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Day of Contract&quot;</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;$sign\_day$ lease ratio&quot;</span>,fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;$sign\_day$ ratio&quot;</span>)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="dv">12</span>,<span class="fl">.028</span>,<span class="st">&quot;계약날짜 비율&quot;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>plt.margins(<span class="fl">.05</span>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<figure>
+<img data-src="output_44_0.svg" alt="svg" /><figcaption aria-hidden="true">svg</figcaption>
+</figure>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df.sign_yrmon.value_counts(sort<span class="op">=</span><span class="va">False</span>)[:<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>201702    3722
+201703    3070
+201701    3238
+201706    2834
+201707    3078
+Name: sign_yrmon, dtype: int64</code></pre>
+<h3 id="rent_type-ratio"><code>rent_type</code> ratio</h3>
+<ul>
+<li>계약년월 (<em>year and month of contract</em>)</li>
+<li>계약일 (<em>day of contract</em>)</li>
+</ul>
+<p>🇰🇷 &gt; 계약년월(예: 202004)과 계약일(11)을 합쳐 sign_date (예: 2020-04-11) 생성</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df.rent_type.value_counts()</span></code></pre></div>
+<pre><code>월세    89224
+전세    83740
+Name: rent_type, dtype: int64</code></pre>
+<h3 id="create-new-column-sign_date-1">Create new column <code>sign_date</code></h3>
+<ul>
+<li>계약년월 (<em>year and month of contract</em>)</li>
+<li>계약일 (<em>day of contract</em>)</li>
+</ul>
+<p>🇰🇷 &gt; 계약년월(예: 202004)과 계약일(11)을 합쳐 sign_date (예: 2020-04-11) 생성</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ser_sign_date<span class="op">=</span> pd.to_datetime([<span class="bu">str</span>(row.sign_yrmon)<span class="op">+</span><span class="bu">str</span>(row.sign_day) <span class="cf">for</span> i,row <span class="kw">in</span> df.iterrows()],<span class="bu">format</span><span class="op">=</span><span class="st">&quot;%Y%m</span><span class="sc">%d</span><span class="st">&quot;</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="dv">5</span>,<span class="st">&quot;sign_date&quot;</span>,ser_sign_date) <span class="co"># index,col_name,array_like_data</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+estate_name
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_date
+</th>
+<th>
+sign_yrmon
+</th>
+<th>
+sign_day
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12 (개포동)
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+2020-04-11
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 172964 entries, 0 to 34673
+Data columns (total 12 columns):
+ #   Column       Non-Null Count   Dtype         
+---  ------       --------------   -----         
+ 0   district     172964 non-null  object        
+ 1   street_addr  172964 non-null  object        
+ 2   estate_name  172964 non-null  object        
+ 3   rent_type    172964 non-null  object        
+ 4   unit_size    172964 non-null  float64       
+ 5   sign_date    172964 non-null  datetime64[ns]
+ 6   sign_yrmon   172964 non-null  int64         
+ 7   sign_day     172964 non-null  int64         
+ 8   deposit      172964 non-null  int64         
+ 9   rent_price   172964 non-null  int64         
+ 10  floor        172964 non-null  int64         
+ 11  yr_built     172964 non-null  int32         
+dtypes: datetime64[ns](1), float64(1), int32(1), int64(5), object(4)
+memory usage: 20.5+ MB</code></pre>
+<h3 id="encode-categorical-variable-district">Encode Categorical Variable <code>district</code></h3>
+<ul>
+<li><p>sklearn.preprocessing.<code>LabelEncoder</code></p></li>
+<li><p>sklearn.preprocessing.<code>OneHotEncoder</code></p></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span> df.iloc[:,:<span class="dv">13</span>]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df2.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+estate_name
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_date
+</th>
+<th>
+sign_yrmon
+</th>
+<th>
+sign_day
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+floor
+</th>
+<th>
+yr_built
+</th>
+<th>
+district_code
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12 (개포동)
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+2020-04-11
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+2
+</td>
+<td>
+2020
+</td>
+<td>
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>enc_lbl<span class="op">=</span> LabelEncoder()</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>enc_onehot<span class="op">=</span> OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">&quot;ignore&quot;</span>,dtype<span class="op">=</span>np.<span class="bu">int</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">&quot;district_code&quot;</span>]<span class="op">=</span> enc_lbl.fit_transform(df.district)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>district_onehot<span class="op">=</span> enc_onehot.fit_transform(df2[[<span class="st">&quot;district_code&quot;</span>]]).toarray()</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span> df2.join(pd.DataFrame(district_onehot))</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>df2.head(<span class="dv">1</span>)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>
+</th>
+<th>
+district
+</th>
+<th>
+street_addr
+</th>
+<th>
+estate_name
+</th>
+<th>
+rent_type
+</th>
+<th>
+unit_size
+</th>
+<th>
+sign_date
+</th>
+<th>
+sign_yrmon
+</th>
+<th>
+sign_day
+</th>
+<th>
+deposit
+</th>
+<th>
+rent_price
+</th>
+<th>
+…
+</th>
+<th>
+15
+</th>
+<th>
+16
+</th>
+<th>
+17
+</th>
+<th>
+18
+</th>
+<th>
+19
+</th>
+<th>
+20
+</th>
+<th>
+21
+</th>
+<th>
+22
+</th>
+<th>
+23
+</th>
+<th>
+24
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+강남구
+</td>
+<td>
+논현로20길 12 (개포동)
+</td>
+<td>
+(1237-3)
+</td>
+<td>
+월세
+</td>
+<td>
+29.51
+</td>
+<td>
+2020-04-11
+</td>
+<td>
+202004
+</td>
+<td>
+11
+</td>
+<td>
+500
+</td>
+<td>
+100
+</td>
+<td>
+…
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+1 rows × 38 columns
+</p>
+</div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>enc_lbl.classes_</span></code></pre></div>
+<pre><code>array([&#39;강남구&#39;, &#39;강동구&#39;, &#39;강북구&#39;, &#39;강서구&#39;, &#39;관악구&#39;, &#39;광진구&#39;, &#39;구로구&#39;, &#39;금천구&#39;, &#39;노원구&#39;,
+       &#39;도봉구&#39;, &#39;동대문구&#39;, &#39;동작구&#39;, &#39;마포구&#39;, &#39;서대문구&#39;, &#39;서초구&#39;, &#39;성동구&#39;, &#39;성북구&#39;, &#39;송파구&#39;,
+       &#39;양천구&#39;, &#39;영등포구&#39;, &#39;용산구&#39;, &#39;은평구&#39;, &#39;종로구&#39;, &#39;중구&#39;, &#39;중랑구&#39;], dtype=object)</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>district_enc_dict<span class="op">=</span> {lbl: i <span class="cf">for</span> (i,lbl) <span class="kw">in</span> <span class="bu">enumerate</span>(enc_lbl.classes_)}</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>district_enc_dict</span></code></pre></div>
+<pre><code>{&#39;강남구&#39;: 0,
+ &#39;강동구&#39;: 1,
+ &#39;강북구&#39;: 2,
+ &#39;강서구&#39;: 3,
+ &#39;관악구&#39;: 4,
+ &#39;광진구&#39;: 5,
+ &#39;구로구&#39;: 6,
+ &#39;금천구&#39;: 7,
+ &#39;노원구&#39;: 8,
+ &#39;도봉구&#39;: 9,
+ &#39;동대문구&#39;: 10,
+ &#39;동작구&#39;: 11,
+ &#39;마포구&#39;: 12,
+ &#39;서대문구&#39;: 13,
+ &#39;서초구&#39;: 14,
+ &#39;성동구&#39;: 15,
+ &#39;성북구&#39;: 16,
+ &#39;송파구&#39;: 17,
+ &#39;양천구&#39;: 18,
+ &#39;영등포구&#39;: 19,
+ &#39;용산구&#39;: 20,
+ &#39;은평구&#39;: 21,
+ &#39;종로구&#39;: 22,
+ &#39;중구&#39;: 23,
+ &#39;중랑구&#39;: 24}</code></pre>
+</section>
+<section id="exploratory-data-analysis" class="slide level2">
+<h2>Exploratory Data Analysis</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager,rc</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>font_path<span class="op">=</span> <span class="vs">r&quot;C:\Users\Jieun\AppData\Local\Microsoft\Windows\Fonts\D2CodingBold-Ver1.3.2-20180524.ttf&quot;</span>.replace(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>,<span class="st">&quot;/&quot;</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>font_name<span class="op">=</span> font_manager.FontProperties(fname<span class="op">=</span>font_path).get_name() <span class="co"># D2Coding</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">&quot;font&quot;</span>,family<span class="op">=</span>font_name)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarize_feature(df,x<span class="op">=</span><span class="va">None</span>,y<span class="op">=</span><span class="va">None</span>,hue<span class="op">=</span><span class="va">None</span>,<span class="op">\</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">&quot;Set1&quot;</span>,verbose<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># summary of categorical feature</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># df: pandas.DataFrame</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x: string; used to horizontally plot the feature label; y will be the count</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># y: string; used to vertically plot the feature label; x will be the count</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># hue: string; used to compare to another variable, usually the target data</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># palette: array-like. color palette for the plot</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> matplotlib <span class="im">import</span> cm</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="va">None</span>:</span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>        col_interest<span class="op">=</span> y</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>        col_interest<span class="op">=</span> x</span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>    ser<span class="op">=</span> df[col_interest]</span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ser.describe())</span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;mode:&quot;</span>,ser.mode()) <span class="co"># most frequent</span></span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;*&quot;</span><span class="op">*</span><span class="dv">25</span>)</span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(ser.value_counts())</span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y <span class="op">==</span> <span class="st">&quot;district&quot;</span>): <span class="co">#(x==&quot;district&quot;) or </span></span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>sns.color_palette(n_colors<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>        sns.countplot(x<span class="op">=</span>x,y<span class="op">=</span>y,hue<span class="op">=</span>hue,data<span class="op">=</span>df,order<span class="op">=</span>df[y].value_counts(ascending<span class="op">=</span><span class="va">False</span>).index,palette<span class="op">=</span>sns.diverging_palette(<span class="dv">150</span>, <span class="dv">10</span>, n<span class="op">=</span><span class="dv">25</span>))</span>
+<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a>        sns.countplot(x<span class="op">=</span>x,y<span class="op">=</span>y,hue<span class="op">=</span>hue,data<span class="op">=</span>df,palette<span class="op">=</span>palette)</span>
+<span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-34"><a href="#cb59-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sns.diverging_palette(240, 10, n=25) #25 districts</span></span>
+<span id="cb59-35"><a href="#cb59-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb59-36"><a href="#cb59-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-37"><a href="#cb59-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-38"><a href="#cb59-38" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">12</span>))</span>
+<span id="cb59-39"><a href="#cb59-39" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<h3 id="visualization-single-feature-district">Visualization: Single Feature <code>district</code></h3>
+<ul>
+<li></li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>summarize_feature(df2,y<span class="op">=</span><span class="st">&quot;district&quot;</span>)</span></code></pre></div>
+<pre><code>count     172964
+unique        25
+top          강서구
+freq       32126
+Name: district, dtype: object
+mode: 0    강서구
+dtype: object
+*************************
+강서구     32126
+영등포구    18454
+송파구     14011
+마포구     13662
+강남구     10649
+구로구     10343
+관악구      9015
+은평구      8379
+동대문구     6480
+서초구      6244
+금천구      6188
+강동구      5912
+성동구      4348
+양천구      3577
+광진구      3438
+중구       3297
+용산구      3195
+서대문구     2468
+도봉구      2450
+종로구      2210
+중랑구      2054
+동작구      1475
+노원구      1294
+성북구      1225
+강북구       470
+Name: district, dtype: int64</code></pre>
+<figure>
+<img data-src="output_60_1.svg" alt="svg" /><figcaption aria-hidden="true">svg</figcaption>
+</figure>
+<pre><code>&lt;Figure size 504x864 with 0 Axes&gt;</code></pre>
+<ul>
+<li>전세 월세 계산 방법 https://blog.naver.com/fdjksffj2/221543662381</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./revealjs/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="./revealjs/plugin/notes/notes.js"></script>
+  <script src="./revealjs/plugin/search/search.js"></script>
+  <script src="./revealjs/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+      
+        // Push each slide change to the browser history
+        history: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
